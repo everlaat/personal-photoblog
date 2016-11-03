@@ -2,11 +2,8 @@ source 'https://rubygems.org'
 gem 'capistrano', '~> 3.1.0'
 gem 'capistrano-bundler', '~> 1.1.2'
 gem 'capistrano-rails', '~> 1.1.1'
-
-# Add this if you're using rbenv
 gem 'capistrano-rbenv', github: "capistrano/rbenv"
-
-gem 'dotenv-rails', groups: [:development, :test]
+gem 'dotenv-rails'
 gem 'rails', '~> 5.0'
 gem 'sqlite3'
 gem 'puma', '~> 3.0'
