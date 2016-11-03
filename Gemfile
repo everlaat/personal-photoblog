@@ -18,6 +18,7 @@ gem 'mailman'
 gem 'mail'
 gem 'github-markup'
 gem 'redcarpet'
+gem 'daemons'
 
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
