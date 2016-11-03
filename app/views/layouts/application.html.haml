@@ -1,0 +1,25 @@
+!!!5
+/[if lt IE 9] <html class="old-ie">
+/[if IE 9] <html class="ie-9">
+<!--[if gt IE 9]><!-->
+%html{lang: I18n.locale}
+  <!--<![endif]-->
+  %head
+    %meta(http-equiv="Content-Type" content="text/html; charset=utf-8")
+    %meta(http-equiv="X-UA-Compatible" content="IE=edge")
+    %meta(name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimal-ui, user-scalable=no")
+
+    %link{ href: 'https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab', rel: 'stylesheet' }
+    = stylesheet_link_tag 'application', media: 'all'
+    = yield :top_stylesheets
+    = csrf_meta_tags
+    /[if lt IE 9]
+      = javascript_include_tag 'https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js'
+    = javascript_include_tag 'https://maps.googleapis.com/maps/api/js?key=' + ENV['GOOGLE_API_KEY']
+    = yield :top_javascripts
+
+  %body
+    = content_for?(:content) ? yield(:content) : yield
+
+    = javascript_include_tag 'application'
+    = yield :javascripts

@@ -1,0 +1,15 @@
+@mixin font-sans-serif() {
+  font-family: 'Roboto', sans-serif;
+  font-size: 13px;
+  font-weight: 300;
+  letter-spacing: 1px;
+  line-height: 21px;
+}
+
+@mixin font-serif() {
+  font-family: 'Roboto Slab', serif;
+  font-size: 13px;
+  letter-spacing: 1px;
+  line-height: 21px;
+  font-weight: 400;
+}

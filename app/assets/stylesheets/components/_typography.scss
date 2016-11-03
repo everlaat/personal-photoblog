@@ -1,0 +1,29 @@
+body {
+  @include font-sans-serif;
+  color: $palette-black;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+header {
+  @include font-serif;
+}
+
+em,
+[rel="date"] {
+  font-style: italic;
+}
+
+h1 {
+  font-size: 32px;
+  line-height: 36px;
+}
+
+h2 {
+  font-size: 21px;
+  line-height: 31px;
+}

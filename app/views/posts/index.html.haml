@@ -1,0 +1,27 @@
+- @page_title = 'Posts'
+- content_for :content do
+  %aside#locations.map
+    .map__overlay
+    .map__map#locations-map.js--map
+  %section.posts
+    - @posts.to_a.each do |post|
+      %article.post.js--post{ id: post.slug, data: { images: post.images.order('created_at').to_json } }
+        %header.post__header
+          %h1.post__header__title= post.title
+          %span.post__header__author{ rel: 'author' }= post.author_name
+          %span.post__header__date{ rel: 'date' }= "#{time_ago_in_words(post.posted_at || post.created_at)} ago"
+        - if post.images.length
+          %section.post__images
+            - post.images.order('created_at').take(4).each_with_index do |image,index|
+              %figure.post__images__image{ style: "background-image: url(#{image.photo.url(:thumb)})", data: { index: index } }
+            - if post.images.length > 4
+              .post__images__image.post__images__image--more{ data: { index: 4 } }
+                %span= "+#{post.images.length - 4} more"
+        %section.post__content= post.content.html_safe
+  %section.lightbox
+    .lightbox__backdrop{ data: { close:true } }
+    .lightbox__modal
+      %button.lightbox__close{ data: { close:true } } &times;
+      %ul.lightbox__imagesetIndex
+      .lightbox__inner
+        %ul.lightbox__imageset
