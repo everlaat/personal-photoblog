@@ -46,11 +46,17 @@ namespace :deploy do
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do
       execute :touch, release_path.join('tmp/restart.txt')
-      run 'pkill -f tasks/mailblog'
-      run "cd #{current_path};RAILS_ENV=#{rails_env} lib/tasks/mailblog.rb > /dev/null 2>&1 &"
+    end
+  end
+
+  desc 'Restart Mailmain'
+  task :restart_mailman do
+    on roles(:app) do
+      execute "cd #{release_path} && pkill -f tasks/mailblog && (export RAILS_ENV='#{fetch(:stage)}' ; bundle exec lib/tasks/mailblog.rb"
     end
   end
 
   after :publishing, 'deploy:restart'
   after :finishing, 'deploy:cleanup'
+  after 'deploy:cleanup', :restart_mailman
 end
