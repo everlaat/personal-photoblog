@@ -76,5 +76,5 @@ namespace :mailman do
     end
   end
 
-  after :finishing, 'mailman:restart'
+  after 'deploy:cleanup', 'mailman:restart'
 end
