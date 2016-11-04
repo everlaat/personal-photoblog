@@ -58,14 +58,14 @@ namespace :mailman do
   desc 'mailman::start'
   task :start do
     on roles(:app) do
-      run "cd #{current_path};RAILS_ENV=#{rails_env} mailman_daemon.rb start"
+      run "cd #{current_path};RAILS_ENV=#{rails_env} lib/tasks/mailblog.rb > /dev/null 2>&1 &"
     end
   end
 
   desc 'mailman::stop'
   task :stop do
     on roles(:app) do
-      run "cd #{current_path};RAILS_ENV=#{rails_env} mailman_daemon.rb stop"
+      run 'pkill -f tasks/mailblog'
     end
   end
 
