@@ -4,6 +4,21 @@ class window.Controllers.Posts
     @initLightbox()
     @initPosts()
     @initMap()
+    @addEventListeners()
+
+  addEventListeners: =>
+    @activePost = null
+    window.addEventListener 'scroll', @gotoPost
+    window.addEventListener 'resize', @gotoPost
+
+  gotoPost: =>
+    lasttop = null
+    for post in @posts
+      top = post.element.getBoundingClientRect().top
+      if top > 0 && (lasttop != null && lasttop < 0)
+        return @map.flyToPost post
+      lasttop = top
+    @map.flyToPost @posts[0]
 
   addImagesToMap: ->
     images = []

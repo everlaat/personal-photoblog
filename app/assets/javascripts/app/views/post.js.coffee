@@ -8,8 +8,8 @@ class window.Views.Post extends App.View
     @isInViewport()
 
   addEventListeners: ->
-    window.addEventListener 'scroll', @isInViewport
-    window.addEventListener 'resize', @isInViewport
+    # window.addEventListener 'scroll', @isInViewport
+    # window.addEventListener 'resize', @isInViewport
     for imagesEl in @element.querySelectorAll '.post__images__image'
       imagesEl.addEventListener 'click', @onImagesClick if imagesEl
 
