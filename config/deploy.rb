@@ -52,3 +52,29 @@ namespace :deploy do
   after :publishing, 'deploy:restart'
   after :finishing, 'deploy:cleanup'
 end
+
+# Mailman configuration
+namespace :mailman do
+  desc 'mailman::start'
+  task :start do
+    on roles(:app) do
+      run "cd #{current_path};RAILS_ENV=#{rails_env} mailman_daemon.rb start"
+    end
+  end
+
+  desc 'mailman::stop'
+  task :stop do
+    on roles(:app) do
+      run "cd #{current_path};RAILS_ENV=#{rails_env} mailman_daemon.rb stop"
+    end
+  end
+
+  desc 'mailman::restart'
+  task :restart do
+    on roles(:app) do
+      mailman.stop mailman.start
+    end
+  end
+
+  after :finishing, 'mailman:restart'
+end
