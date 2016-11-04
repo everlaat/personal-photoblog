@@ -7,7 +7,6 @@ class window.Views.Lightbox
       closeEl.addEventListener 'click', (el) =>
         @setInactive()
 
-
   openImageSet: (images, index = 0) =>
     @setActive()
     @setImageset images
@@ -34,12 +33,10 @@ class window.Views.Lightbox
         style: "background-image: url(#{image.url});",
         'data-index': index
       liimg = elem 'li.image',
-        #style: "background-image: url(#{image.url});",
         'data-index': index
       img = elem 'img',
         src: image.url
       liimg.appendChild img
-
       @imagesetIndexEl.appendChild li
       @imagesetEl.appendChild liimg
       li.addEventListener 'mouseenter', @onIndexClick
@@ -51,7 +48,9 @@ class window.Views.Lightbox
     @activeIndex = index
     li = @imagesetEl.querySelector "[data-index=\"#{index}\"]"
     padding = window.innerWidth - li.clientWidth
-    left = li.offsetLeft - (padding / 2)
+    left = 0
+    if index > 0
+      left = li.offsetLeft - (padding / 2)
     transform = "transform: translate(#{0-left}px, 0);"
     @imagesetEl.setAttribute 'style', transform
     for el in @imagesetIndexEl.querySelectorAll('li')

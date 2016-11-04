@@ -46,6 +46,6 @@ class window.Views.MapMarker extends google.maps.OverlayView
     @marker.style.top = "#{se.y}px"
     if @image.post.isInViewport() && !@marker.classList.contains 'is--active'
       @marker.classList.add 'is--active'
-      @view.flyToMarker @
+      @view.flyToPost @image.post
     else if !@image.post.isInViewport()
       @marker.classList.remove 'is--active'

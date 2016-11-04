@@ -52,7 +52,7 @@ namespace :deploy do
   desc 'Restart Mailmain'
   task :restart_mailman do
     on roles(:app) do
-      execute "cd #{release_path} && pkill -f tasks/mailblog && (export RAILS_ENV='#{fetch(:stage)}'); bundle exec lib/tasks/mailblog.rb > /dev/null 2>&1 &"
+      execute "cd #{release_path}; pkill -f tasks/mailblog; (export RAILS_ENV='#{fetch(:stage)}'); nohup lib/tasks/mailblog.rb &> /dev/null &"
     end
   end
 

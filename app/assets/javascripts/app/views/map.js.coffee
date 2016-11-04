@@ -20,6 +20,18 @@ class window.Views.Map
       @flying = false
     , 100)
 
+  flyToPost: (post) ->
+    return if @flying
+    @flying = true
+    bounds = new google.maps.LatLngBounds()
+    for image in post.getImages()
+      pos = new google.maps.LatLng(image.lat, image.lng)
+      bounds['extend'](pos)
+    @googleMap.fitBounds bounds
+    setTimeout( =>
+      @flying = false
+    , 100)
+
   initMap: =>
     @googleMap = new google.maps.Map document.getElementById('locations-map'),
       mapTypeId: 'terrain'
