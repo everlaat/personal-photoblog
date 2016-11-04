@@ -8,7 +8,7 @@ require 'mailman'
 # require File.expand_path(File.dirname(__FILE__) + '/../../config/environment')
 
 Mailman.config.logger = Logger.new('log/mailman.log')
-Mailman.config.poll_interval = 60
+Mailman.config.poll_interval = 20
 
 Mailman.config.pop3 = {
   server: ENV['MAIL_SERVER'],
