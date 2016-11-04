@@ -5,6 +5,7 @@ class BlogMailer < ApplicationMailer
   def receive(mail)
     author = Author.find_by(email: mail.from)
     if author
+      puts "new mail from #{author.name}"
       mail_to_post author, mail
     end
   end
@@ -40,6 +41,7 @@ class BlogMailer < ApplicationMailer
     post.posted_at = DateTime.now
     post.save()
     mail_add_photos(mail, post)
+    puts "post '#{post.title}' saved"
   end
 
   def mail_add_photos(mail, post)
