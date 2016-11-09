@@ -28,6 +28,8 @@ class window.Views.Map
       pos = new google.maps.LatLng(image.lat, image.lng)
       bounds['extend'](pos)
     @googleMap.fitBounds bounds
+    cz = @googleMap.getZoom()
+    @googleMap.setZoom(13) if cz > 13
     setTimeout( =>
       @flying = false
     , 100)
