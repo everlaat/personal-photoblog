@@ -9,7 +9,7 @@ class Post < ApplicationRecord
   validates :title, presence: true
 
   def self.recent(limit)
-    Post.order('created_at DESC').limit(limit)
+    Post.order('posted_at DESC').limit(limit)
   end
 
   def slug
