@@ -1,5 +1,5 @@
 ActiveAdmin.register Post do
-  permit_params :title, :content, :author_id
+  permit_params :title, :content, :author_id, :posted_at
 
   index do
     selectable_column
