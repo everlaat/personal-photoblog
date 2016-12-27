@@ -25,4 +25,4 @@
 .env
 
 # Ignore config
-config/secret.yml*
+config/secrets.yml*
