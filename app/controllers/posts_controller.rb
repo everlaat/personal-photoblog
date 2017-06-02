@@ -3,6 +3,7 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.recent 25
+    
     render layout: 'application'
   end
 
